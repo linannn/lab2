@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+<package name = "lab2" extends = "struts-default" namespace = "/">
+	<action name = "allBook" class = "action.AllBooks">
+		<result>/bookPage.jsp</result>
+	</action>
+	<!-- 书籍信息 -->
+	<action name = "bookInfo" class = "action.BookInfo">
+		<result>/bookInfo.jsp</result>
+	</action>
+	<!-- 作者信息 -->
+	<action name = "authorInfo" class = "action.AuthorInfo">
+		<result>/authorInfo.jsp</result>
+	</action>
+	<!-- 按作者姓名搜索 -->
+	<action name = "searchAuthorName" class = "action.SearchAuthor">
+		<result>/searchAuthorName.jsp</result>
+		<result name = "nobook">/noBook.jsp</result>
+		<result name = "noperson">/noPerson.jsp</result>
+		<result name = "noinput">/index.jsp</result>
+		<result name = "multiperson">/multiPerson.jsp</result>
+	</action>
+	<!-- 当姓名相同时使用ID检索的辅助类 -->
+	<action name = "searchAuthorID" class = "action.SearchAuthor" method = "byID">
+		<result name = "nobook">/noBook.jsp</result>
+		<result>/searchAuthorName.jsp</result>
+	</action>
+	<!-- 删除书籍 -->
+	<action name = "deleteBook" class = "action.DeleteBook">
+		<result type = "redirectAction">
+			<param name="actionName">allBook</param>
+		</result>
+		<result name = "error">/error.jsp</result>
+	</action>
+	<!-- 添加作者 -->
+	<action name="addAuthor" class = "action.AddAuthor">
+		<result>/addBook.jsp</result>
+		<result name = "error">/error.jsp</result>
+	</action>	
+	<!-- 添加书籍 -->
+	<action name="addBook" class = "action.AddBook">
+		<result>/index.jsp</result>
+		<result name = "error">/error.jsp</result>
+		<result name = "noauthor">/choose.jsp</result>
+	</action>
+</package>
+</struts>
